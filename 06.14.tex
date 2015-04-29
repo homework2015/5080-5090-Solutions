@@ -1,15 +1,30 @@
 {\bf 06.14}
 
 
-\section*{Given: Joint PDF $f(x,y)=\begin{cases} 4{ e }^{ -2(x+y) }\quad ,\quad 0<x<\infty ,0<y<\infty  \\ 0\quad ,\quad o/w \end{cases}$\\ Find: a) CDF of W=X+Y}
+{Given: Joint PDF $f(x,y)=\begin{cases} 4{ e }^{ -2(x+y) }\quad ,\quad 0<x<\infty ,0<y<\infty  \\ 0\quad ,\quad o/w \end{cases}$
 
-\paragraph{Setup:}  ${F}_{w}(w)=P[W\le w]=P[X+Y\le w]$
+Find: 
 
-\paragraph{Steps:} 
+a) CDF of W=X+Y}
 
-\subparagraph{i)} Express as a sum of probabilities, replace probabilities with binomials
+First, I will find the pdf of x and y. 
 
-\subparagraph{ii)} Simplify and Use Combinatorial Identity
+$$f_{X}=\int_{0}^{\infty} 4e^{-2(x+y)} dy= \left. 4e^{-2x}\frac{e^{-2y}}{-2}\right|_0^{\infty}=2e^{-2x}$$
+Similarly, you can get $$g_{Y}=2e^{-2y}$$
 
-\paragraph{Result:} $\left( \begin{matrix} n+m \\ k \end{matrix} \right) $
-\\
+Then use convolution formula here,
+
+$f_{W}=f_{X+Y}=\int_{\mathbb{R} } f(y)g(x-y)dy=\int_{0}^{x} 2e^{-2y} 2e^{-2(x-y)}dy=\int_{0}^{x} 4e^{-2x}dy=4e^{-2x}x$
+
+$F_{W}=4\int_{0}^{w} 4e^{-2x}x dx =4(\left. \frac{e^{-2x}}{-2} x\right|_0^{w}- \int_{0}^{w} \frac{e^{-2x}}{-2})=4( \frac{e^{-2w}}{-2}w-  \left. \frac{e^{-2x}}{4}\right|_0^{w})=4(1/4+ \frac{e^{-2w}}{-2}w-\frac{e^{-2w}}{4})=1-(1+2w)^{-2w}$ for $w>0$
+
+b)
+$X=V$ $Y=V/U$ 
+
+$J=-v/u^2$
+Also $u,v>0$ 
+
+$f_{U,V}=f_{X,Y}(v,v/u)|J|=2e^{-2v}2e^{-2v/u} \frac{v}{u^2}=4(v/u^2)e^{-2v(1+1/u)};u>=,v>0$
+
+c) 
+$f_{U}=\int_{0}^{\infty} 4(v/u^2)e^{-2v(1+1/u)} dv=1/(1+u^2) $ for $ u>0$
